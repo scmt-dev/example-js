@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control Flow and Functions Example</title>
+</head>
+<body>
+
+<script>
+  // Control Flow - if statement
+  let isSunny = true;
+
+  if (isSunny) {
+    console.log("It's a sunny day!");
+  } else {
+    console.log("It's not sunny today.");
+  }
+
+  // Control Flow - switch statement
+  let dayOfWeek = "Monday";
+
+  switch (dayOfWeek) {
+    case "Monday":
+      console.log("It's the start of the week.");
+      break;
+    case "Friday":
+      console.log("It's almost the weekend!");
+      break;
+    default:
+      console.log("It's a regular day.");
+  }
+
+  // Functions
+  function greet(name) {
+    console.log("Hello, " + name + "!");
+  }
+
+  greet("Alice");
+  greet("Bob");
+
+  // Function with return value
+  function addNumbers(a, b) {
+    return a + b;
+  }
+
+  let result = addNumbers(5, 7);
+  console.log("Sum:", result);
+
+
+
+//   In this example:
+
+// We use the if statement to check whether it's a sunny day.
+// We use the switch statement to check the day of the week.
+// We define a simple function greet that takes a name as a parameter.
+// We call the greet function with different names.
+// We define a function addNumbers that returns the sum of two numbers.
+// We call the addNumbers function with values 5 and 7 and print the result.
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OOP JavaScript Example with Event</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Object-Oriented Programming (OOP) in JavaScript with Event</h2>
+
+<script>
+  // Define the Person class
+  class Person {
+    constructor(firstName, lastName, age) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.age = age;
+    }
+
+    // Method to get the full name of the person
+    getFullName() {
+      return `${this.firstName} ${this.lastName}`;
+    }
+
+    // Method to greet the person
+    greet() {
+      console.log(`Hello, ${this.getFullName()}!`);
+    }
+  }
+
+  // Create an instance of the Person class
+  const person = new Person('John', 'Doe', 30);
+
+  // Add an event listener to the button
+  document.getElementById('greetButton').addEventListener('click', () => {
+    // Trigger the greet method when the button is clicked
+    person.greet();
+  });
+</script>
+
+<button id="greetButton">Greet</button>
+
+</body>
+</html>

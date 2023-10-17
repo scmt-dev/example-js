@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Form Example</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+      }
+
+      button {
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="greetingForm">
+      <label for="nameInput">Your Name:</label>
+      <input
+        type="text"
+        id="nameInput"
+        placeholder="Enter your name"
+        required
+      />
+
+      <button type="button" onclick="displayGreeting()">Show Greeting</button>
+
+      <p id="greetingMessage"></p>
+    </form>
+
+    <script>
+      function displayGreeting() {
+        // Get the value from the input field
+        let nameInput = document.getElementById("nameInput");
+        let userName = nameInput.value;
+
+        // Display personalized greeting
+        let greetingMessage = document.getElementById("greetingMessage");
+        greetingMessage.textContent = `Hello, ${userName}! Welcome to our website.`;
+      }
+
+      //   In this example:
+
+      // We create a simple form with an input field for the user's name and a button to trigger the greeting.
+      // The displayGreeting function is called when the button is clicked. It retrieves the user's name from the input field and displays a personalized greeting.
+      // Basic CSS styling is applied for a clean and readable form.
+    </script>
+  </body>
+</html>

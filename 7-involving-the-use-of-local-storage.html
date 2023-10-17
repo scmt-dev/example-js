@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local Storage To-Do List Example</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      button {
+        padding: 8px;
+        background-color: #28a745;
+        color: white;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>To-Do List</h2>
+
+    <form id="todoForm">
+      <label for="taskInput">Add Task:</label>
+      <input type="text" id="taskInput" placeholder="Enter a task" required />
+      <button type="button" onclick="addTask()">Add</button>
+    </form>
+
+    <ul id="taskList"></ul>
+
+    <script>
+      function addTask() {
+        // Get the task input value
+        let taskInput = document.getElementById("taskInput");
+        let taskText = taskInput.value;
+
+        if (taskText.trim() === "") {
+          alert("Please enter a task.");
+          return;
+        }
+
+        // Create a new task item
+        let taskList = document.getElementById("taskList");
+        let taskItem = document.createElement("li");
+        taskItem.textContent = taskText;
+
+        // Append the task item to the task list
+        taskList.appendChild(taskItem);
+
+        // Save the tasks to local storage
+        saveTasksToLocalStorage();
+
+        // Clear the input field
+        taskInput.value = "";
+      }
+
+      function saveTasksToLocalStorage() {
+        // Get the current tasks from local storage
+        let savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+        // Get the task text from each task item in the list
+        let taskItems = document.querySelectorAll("#taskList li");
+        let tasks = Array.from(taskItems).map((task) => task.textContent);
+
+        // Update the saved tasks with the new tasks
+        savedTasks = [...savedTasks, ...tasks];
+
+        // Save the tasks back to local storage
+        localStorage.setItem("tasks", JSON.stringify(savedTasks));
+      }
+
+      // Load tasks from local storage on page load
+      window.addEventListener("load", function () {
+        let savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        let taskList = document.getElementById("taskList");
+
+        savedTasks.forEach((taskText) => {
+          let taskItem = document.createElement("li");
+          taskItem.textContent = taskText;
+          taskList.appendChild(taskItem);
+        });
+      });
+
+      //   In this example:
+
+      // We create a simple to-do list with an input field for adding tasks and a button to add tasks to the list.
+      // The addTask function is called when the "Add" button is clicked. It creates a new list item with the task text and appends it to the task list.
+      // Tasks are saved to the browser's local storage using the localStorage API.
+      // On page load, tasks are loaded from local storage and displayed in the task list.
+    </script>
+  </body>
+</html>

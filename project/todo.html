@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    #todoList {
+      margin-top: 20px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .task {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 8px;
+    }
+
+    .task.completed {
+      text-decoration: line-through;
+      color: #888;
+    }
+
+    #taskInput {
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Todo List</h2>
+
+<div id="todoList">
+  <div>
+    <input type="text" id="taskInput" placeholder="Enter task">
+    <button onclick="addTask()">Add Task</button>
+  </div>
+  <div id="tasks"></div>
+</div>
+
+<script>
+  const tasksContainer = document.getElementById('tasks');
+  const taskInput = document.getElementById('taskInput');
+
+  function addTask() {
+    const taskText = taskInput.value.trim();
+    if (taskText === '') {
+      alert('Please enter a task.');
+      return;
+    }
+
+    const taskElement = document.createElement('div');
+    taskElement.classList.add('task');
+    taskElement.innerHTML = `
+      <span>${taskText}</span>
+      <button onclick="deleteTask(this)">Delete</button>
+      <input type="checkbox" onchange="toggleCompleted(this)">
+    `;
+
+    tasksContainer.appendChild(taskElement);
+    taskInput.value = '';
+  }
+
+  function deleteTask(button) {
+    const taskElement = button.closest('.task');
+    taskElement.remove();
+  }
+
+  function toggleCompleted(checkbox) {
+    const taskElement = checkbox.closest('.task');
+    taskElement.classList.toggle('completed', checkbox.checked);
+  }
+</script>
+
+</body>
+</html>

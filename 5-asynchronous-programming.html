@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asynchronous Programming Example</title>
+  </head>
+  <body>
+    <h2 id="asyncMessage">Waiting for async data...</h2>
+
+    <script>
+      // setTimeout for asynchronous behavior
+      setTimeout(function () {
+        let asyncMessageElement = document.getElementById("asyncMessage");
+        asyncMessageElement.textContent = "Async data has arrived!";
+      }, 2000); // Wait for 2 seconds
+
+      // Fetch data asynchronously
+      fetch("https://jsonplaceholder.typicode.com/todos/1")
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          let asyncMessageElement = document.getElementById("asyncMessage");
+          asyncMessageElement.textContent =
+            "Fetched data: " + JSON.stringify(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+
+      //     In this example:
+
+      // We use setTimeout to simulate asynchronous behavior. The content of the <h2> element changes after a delay of 2 seconds.
+      // We use the fetch API to make an asynchronous request to a JSONPlaceholder endpoint. The response is handled using promises.
+      // The fetched data is logged to the console and displayed on the webpage.
+    </script>
+  </body>
+</html>

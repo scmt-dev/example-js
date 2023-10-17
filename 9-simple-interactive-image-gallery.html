@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Gallery Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    #gallery {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .thumbnail {
+      width: 100px;
+      height: 100px;
+      margin: 8px;
+      cursor: pointer;
+    }
+
+    .thumbnail:hover {
+      border: 2px solid #007BFF;
+    }
+
+    #largeImage {
+      max-width: 100%;
+      max-height: 400px;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Image Gallery</h2>
+
+<div id="gallery">
+  <img class="thumbnail" src="https://via.placeholder.com/100" alt="Image 1" onclick="showImage('https://via.placeholder.com/800')">
+  <img class="thumbnail" src="https://via.placeholder.com/100" alt="Image 2" onclick="showImage('https://via.placeholder.com/800')">
+  <img class="thumbnail" src="https://via.placeholder.com/100" alt="Image 3" onclick="showImage('https://via.placeholder.com/800')">
+  <!-- Add more thumbnails as needed -->
+</div>
+
+<img id="largeImage" alt="Large Image">
+
+<script>
+  function showImage(largeImageUrl) {
+    // Get the large image element
+    let largeImage = document.getElementById("largeImage");
+
+    // Set the source of the large image to the clicked thumbnail's source
+    largeImage.src = largeImageUrl;
+  }
+</script>
+
+</body>
+</html>

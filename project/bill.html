@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POS System with Printing</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    #posContainer {
+      margin-top: 20px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .product {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 8px;
+    }
+
+    #bill {
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      padding: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Point of Sale System with Printing</h2>
+
+<div id="posContainer">
+  <div>
+    <label for="productInput">Product:</label>
+    <input type="text" id="productInput" placeholder="Enter product">
+    <label for="priceInput">Price:</label>
+    <input type="number" id="priceInput" placeholder="Enter price">
+    <button onclick="addProduct()">Add Product</button>
+  </div>
+
+  <div id="products"></div>
+
+  <div id="bill">
+    <h3>Bill</h3>
+    <ul id="billItems"></ul>
+    <p>Total: $<span id="totalAmount">0.00</span></p>
+    <button onclick="generateBill()">Generate Bill</button>
+    <button onclick="printBill()">Print Bill</button>
+  </div>
+</div>
+
+<script>
+  const productsContainer = document.getElementById('products');
+  const billItemsContainer = document.getElementById('billItems');
+  const totalAmountSpan = document.getElementById('totalAmount');
+  const productInput = document.getElementById('productInput');
+  const priceInput = document.getElementById('priceInput');
+  let totalAmount = 0;
+
+  function addProduct() {
+    const productName = productInput.value.trim();
+    const productPrice = parseFloat(priceInput.value);
+
+    if (productName === '' || isNaN(productPrice) || productPrice <= 0) {
+      alert('Please enter valid product information.');
+      return;
+    }
+
+    const productElement = document.createElement('div');
+    productElement.classList.add('product');
+    productElement.innerHTML = `
+      <span>${productName}</span>
+      <span>$${productPrice.toFixed(2)}</span>
+    `;
+
+    productsContainer.appendChild(productElement);
+
+    // Add the product to the bill
+    const billItemElement = document.createElement('li');
+    billItemElement.innerHTML = `${productName} - $${productPrice.toFixed(2)}`;
+    billItemsContainer.appendChild(billItemElement);
+
+    // Update total amount
+    totalAmount += productPrice;
+    totalAmountSpan.textContent = totalAmount.toFixed(2);
+
+    // Clear input fields
+    productInput.value = '';
+    priceInput.value = '';
+  }
+
+  function generateBill() {
+    if (totalAmount === 0) {
+      alert('No items in the bill.');
+      return;
+    }
+
+    // Display the total amount
+    alert(`Bill Generated!\nTotal Amount: $${totalAmount.toFixed(2)}`);
+  }
+
+  function printBill() {
+    window.print();
+  }
+</script>
+
+</body>
+</html>
